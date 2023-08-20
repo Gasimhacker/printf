@@ -41,7 +41,7 @@ int specify_format(const char *format, va_list args, int index)
  *
  * Return: The length for specuial characters which is 1 
  */
-int specify_special_characters(char *sc)
+int specify_special_characters(char sc)
 {
 	printer_t args_printer[] = {
 		{'\\', print_back_slash},
@@ -57,6 +57,7 @@ int specify_special_characters(char *sc)
 			break;
 		}
 	}
+
 	return (1);
 }
 
