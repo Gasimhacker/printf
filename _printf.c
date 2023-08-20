@@ -20,7 +20,7 @@ int specify_format(const char *format, va_list args, int index)
 		{'s', print_string},
 		{'i', print_int},
 		{'d', print_int},
-		{'b', print_binary}
+		{'b', print_binary},
 	};
 
 
@@ -34,6 +34,31 @@ int specify_format(const char *format, va_list args, int index)
 	}
 
 	return (len);
+}
+
+/**
+ * specify_special_characters - Specify the rigth special character after backslahs
+ * @sc: The special character after backslach to deal with 
+ *
+ * Return: Nothing
+ */
+void specify_special_characters(char *sc)
+{
+	printer_t args_printer[] = {
+		{'\\', print_char},
+		{'\"', print_char},
+		{'\%', print_char},
+		{'n', print_int},
+	};
+
+	for (i = 0; i < 4; i++)
+	{
+		if (args_printer[i].format == sc)
+		{
+			len = (args_printer[i].print_arg());
+			break;
+		}
+	}
 }
 
 
@@ -58,7 +83,7 @@ int _printf(const char *format, ...)
 
 	while (format && *(format + index))
 	{
-		if ((*(format + index) != '%'))
+		if ((*(format + index) != '%') && (*(format + index) != '\\'))
 		{
 			_putchar(*(format + index));
 		}
@@ -66,6 +91,13 @@ int _printf(const char *format, ...)
 		{
 			index++;
 			len += specify_format(format, args, index);
+			index++;
+			continue;
+		}
+		else if ((*(format + index) == '\\'))
+		{
+			index++;
+			specify_special_characters(*(format + index));
 			index++;
 			continue;
 		}
