@@ -15,7 +15,6 @@ int specify_format(const char *format, va_list args, int index)
 {
 	int i, len = 0;
 	printer_t args_printer[] = {
-		{'%', print_char},
 		{'c', print_char},
 		{'s', print_string},
 		{'i', print_int},
@@ -58,6 +57,11 @@ int _printf(const char *format, ...)
 	{
 		if ((*(format + index) != '%'))
 		{
+			_putchar(*(format + index));
+		}
+		else if ((*(format + index + 1) == '%'))
+		{
+			index++;
 			_putchar(*(format + index));
 		}
 		else
