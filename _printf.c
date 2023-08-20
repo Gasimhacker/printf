@@ -73,7 +73,7 @@ int _printf(const char *format, ...)
 			index++;
 			continue;
 		}
-		
+
 		len++;
 		index++;
 	}
