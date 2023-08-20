@@ -58,7 +58,7 @@ int _printf(const char *format, ...)
 
 	while (format && *(format + index))
 	{
-		if ((*(format + index) != '%') && (*(format + index) != '\'))
+		if ((*(format + index) != '%') && (*(format + index) != '\\'))
 		{
 			_putchar(*(format + index));
 		}
