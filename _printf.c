@@ -13,7 +13,7 @@
  */
 int specify_format(const char *format, va_list args, int index)
 {
-	int i, len = 0;
+	int i;
 	printer_t args_printer[] = {
 		{'c', print_char},
 		{'s', print_string},
@@ -22,16 +22,18 @@ int specify_format(const char *format, va_list args, int index)
 		{'b', print_binary},
 	};
 
-	for (i = 0; i < 6; i++)
+	for (i = 0; i < 5; i++)
 	{
 		if (args_printer[i].format == *(format + index))
 		{
-			len = (args_printer[i].print_arg(args));
-			break;
+			return (args_printer[i].print_arg(args));
 		}
 	}
 
-	return (len);
+	_putchar('%');
+	_putchar(*(format + index));
+
+	return (2);
 }
 
 /**
