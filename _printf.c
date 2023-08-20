@@ -36,33 +36,6 @@ int specify_format(const char *format, va_list args, int index)
 }
 
 /**
- * specify_special_characters - Specify the rigth special character after backslahs
- * @sc: The special character after backslach to deal with 
- *
- * Return: The length for specuial characters which is 1 
- */
-int specify_special_characters(char sc)
-{
-	printer_t args_printer[] = {
-		{'\\', print_back_slash},
-		{'\"', print_double_quotes},
-		{'n', print_newline},
-	};
-
-	for (i = 0; i < 3; i++)
-	{
-		if (args_printer[i].format == sc)
-		{
-			args_printer[i].print_arg();
-			break;
-		}
-	}
-
-	return (1);
-}
-
-
-/**
  * _printf - Print any argument passed
  * @format: A list of types of arguments passed to the function:
  *	    %c: char
@@ -83,25 +56,18 @@ int _printf(const char *format, ...)
 
 	while (format && *(format + index))
 	{
-		if ((*(format + index) != '%') && (*(format + index) != '\\'))
+		if ((*(format + index) != '%'))
 		{
 			_putchar(*(format + index));
 		}
-		else if ((*(format + index) == '%'))
+		else
 		{
 			index++;
 			len += specify_format(format, args, index);
 			index++;
 			continue;
 		}
-		else if ((*(format + index) == '\\'))
-		{
-			index++;
-			len += specify_special_characters(*(format + index));
-			index++;
-			continue;
-		}
-
+		
 		len++;
 		index++;
 	}

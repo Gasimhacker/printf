@@ -68,34 +68,6 @@ int print_binary(va_list args);
 int to_binary(int n);
 
 /**
- * print_back_slash - Prints a backslash 
- * 
- * Return: Nothing
- */
-void print_back_slash();
-
-/**
- * print_double_quotes - Prints a double quote
- *
- * Return: Nothing
- */
-void print_double_quotes();
-
-/**
- * print_percent - Prints a percent sign
- *
- * Return: Nothing
- */
-void print_percent();
-
-/**
- * print_newline - Prints a new line
- *
- * Return: Nothing
- */
-void print_newline();
-
-/**
  * _printf - Print any argument passed
  * @format: A list of types of arguments passed to the function:
  *	    %c: char
