@@ -78,3 +78,20 @@ int print_string(va_list args)
 	}
 	return (len);
 }
+
+
+
+/**
+ * print_binary - Prints the binary representation of an unsigned integer
+ * @args: A list containing the integer to print its binary representation
+ *
+ * Return: The length of the printed binary number
+ */
+int print_binary(va_list args)
+{
+	unsigned int num = va_arg(args, unsigned int);
+
+	num = to_binary(num);
+
+	return (print_rec_int(num));
+}

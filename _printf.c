@@ -20,10 +20,11 @@ int specify_format(const char *format, va_list args, int index)
 		{'s', print_string},
 		{'i', print_int},
 		{'d', print_int},
+		{'b', print_binary}
 	};
 
 
-	for (i = 0; i < 5; i++)
+	for (i = 0; i < 6; i++)
 	{
 		if (args_printer[i].format == *(format + index))
 		{
