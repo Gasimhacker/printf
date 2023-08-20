@@ -23,7 +23,6 @@ int specify_format(const char *format, va_list args, int index)
 		{'b', print_binary},
 	};
 
-
 	for (i = 0; i < 6; i++)
 	{
 		if (args_printer[i].format == *(format + index))
@@ -40,24 +39,25 @@ int specify_format(const char *format, va_list args, int index)
  * specify_special_characters - Specify the rigth special character after backslahs
  * @sc: The special character after backslach to deal with 
  *
- * Return: Nothing
+ * Return: The length for specuial characters which is 1 
  */
-void specify_special_characters(char *sc)
+int specify_special_characters(char *sc)
 {
 	printer_t args_printer[] = {
-		{'\\', print_char},
-		{'\"', print_char},
-		{'n', print_int},
+		{'\\', print_back_slash},
+		{'\"', print_double_quotes},
+		{'n', print_newline},
 	};
 
 	for (i = 0; i < 3; i++)
 	{
 		if (args_printer[i].format == sc)
 		{
-			len = (args_printer[i].print_arg());
+			args_printer[i].print_arg();
 			break;
 		}
 	}
+	return (1);
 }
 
 
@@ -96,7 +96,7 @@ int _printf(const char *format, ...)
 		else if ((*(format + index) == '\\'))
 		{
 			index++;
-			specify_special_characters(*(format + index));
+			len += specify_special_characters(*(format + index));
 			index++;
 			continue;
 		}
