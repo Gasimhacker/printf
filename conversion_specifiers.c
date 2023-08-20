@@ -1,6 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
-
+#include <unistd.h>
 
 /**
  * print_rec_int - Print an integer using recursion
@@ -70,7 +70,13 @@ int print_string(va_list args)
 	int len = 0;
 	char *str = va_arg(args, char *);
 
-	while (str && *str)
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+
+	while (*str)
 	{
 		_putchar(*str);
 		str++;
