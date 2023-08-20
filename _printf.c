@@ -47,11 +47,10 @@ void specify_special_characters(char *sc)
 	printer_t args_printer[] = {
 		{'\\', print_char},
 		{'\"', print_char},
-		{'\%', print_char},
 		{'n', print_int},
 	};
 
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < 3; i++)
 	{
 		if (args_printer[i].format == sc)
 		{
