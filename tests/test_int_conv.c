@@ -13,7 +13,7 @@ int main(void)
 
 	len1 = _printf("My age is %d", -23);
 	len2 = printf("My age is %d", -23);
-	printf("Length1:[%d], Length2:[%d]\n", n, num);
+	printf("Length1:[%d], Length2:[%d]\n", len1, len2);
 
 	return (0);
 }

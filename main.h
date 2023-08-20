@@ -52,6 +52,22 @@ int print_char(va_list args);
 int print_string(va_list args);
 
 /**
+ * print_binary - Prints the binary representation of an unsigned integer
+ * @args: A list containing the integer to print its binary representation
+ *
+ * Return: The length of the printed binary number
+ */
+int print_binary(va_list args);
+
+/**
+ * to_binary - Convert an unsigned integer to binary
+ * @n: The number to be converted
+ *
+ * Return: The binary representation of the argument passed
+ */
+int to_binary(int n);
+
+/**
  * _printf - Print any argument passed
  * @format: A list of types of arguments passed to the function:
  *	    %c: char
