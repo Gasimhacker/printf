@@ -8,7 +8,6 @@
  */
 int main(void)
 {
-	_printf("%x\n", 160);
-    //_printf("%x\n", 160);
+	_printf("%X\n", 160);
 	return (0);
 }
