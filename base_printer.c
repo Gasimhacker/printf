@@ -16,14 +16,14 @@ int print_base(va_list args, int base, int capital)
 {
 	char *base_as_string;
 	unsigned int num = va_arg(args, unsigned int);
-	int len = 0;
+	int len;
 
 	base_as_string = convert_to_base(num, base, capital);
+	len = _strlen(base_as_string);
 
-	write(1, base_as_string, _strlen(base_as_string));
+	write(1, base_as_string, len);
 
 	return (len);
-
 }
 
 
