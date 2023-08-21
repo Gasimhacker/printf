@@ -30,15 +30,32 @@ int specify_format(const char *format, va_list args, int index)
 		}
 	}
 
-	if (*(format) == '\0' || (*(format + index) == ' ' && *(format + index + 1) == '\0'))
-		return (-1);
-
 	_putchar('%');
 	_putchar(*(format + index));
 
 	return (2);
 }
 
+
+/**
+ * check_false_percent - Check if there is "%" or "% "
+ *			 at the end of the string
+ * @format: The string to check
+ * @index: The index after the percentige
+ *
+ * Return: If there is false % - 1
+ *	   otherwise - 0
+ */
+int check_false_percent(const char *format, int index)
+{
+	if (*(format + index) == ' ' && *(format + index + 1) == '\0')
+		return (1);
+
+	if (*(format + index) == '\0')
+		return (1);
+
+	return (0);
+}
 
 /**
  * _printf - Print any argument passed
@@ -78,10 +95,7 @@ int _printf(const char *format, ...)
 		{
 			index++;
 
-			if (*(format + index) == ' ' && *(format + index + 1) == '\0')
-				return (-1);
-
-			if (*(format + index) == '\0')
+			if (check_false_percent(format, index))
 				return (-1);
 
 			len += specify_format(format, args, index);
