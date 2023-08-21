@@ -4,7 +4,7 @@
  *
  * Return: The binary representation of the argument passed
  */
-int to_binary(int n)
+int to_binary(unsigned int n)
 {
 	if (n == 1 || n == 0)
 		return (n);
