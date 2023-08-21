@@ -13,6 +13,9 @@ char *to_binary(unsigned int n)
 
 	ans[32] = '\0';
 
+	if (!n)
+		ans[--i] == '0';
+
 	while (i && n)
 	{
 		ans[--i] = (n % 2) + '0';
