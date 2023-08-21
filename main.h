@@ -77,11 +77,11 @@ char *to_binary(unsigned int n);
 int print_octal(va_list args);
 
 /**
- * convert_to_base an unsigned integer to binary
+ * convert_to_base - an unsigned integer to binary
  * @number: The number to be converted
- * @base: The base of the number to be converted to 
+ * @base: The base of the number to be converted to
  *
- * Return: A to the binary
+ * Return: A pointer to the binary
  *	   representation (as a string) of the argument passed
  */
 char *convert_to_base(unsigned int number, int base);

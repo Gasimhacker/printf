@@ -122,7 +122,7 @@ int print_octal(va_list args)
 	unsigned int num = va_arg(args, unsigned int);
 	int len = 0;
 
-	octal_as_string = convert_to_base(num,8);
+	octal_as_string = convert_to_base(num, 8);
 
 	while (*(octal_as_string + len))
 		len++;
