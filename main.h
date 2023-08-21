@@ -77,8 +77,7 @@ char *to_binary(unsigned int n);
 int print_octal(va_list args);
 
 /**
- * print_capital_hex - Prints the capital hexadecimal
- * 		representation of an unsigned integer
+ * print_capital_hex - Prints the capital hexadecimal representation
  * @args: A list containing integer to print its hexadecimal representation
  *
  * Return: The length of the printed hexadecimal number
@@ -86,8 +85,7 @@ int print_octal(va_list args);
 int print_capital_hex(va_list args);
 
 /**
- * print_small_hex - Prints the small hexadecimal
- * 		representation of an unsigned integer
+ * print_small_hex - Prints the small hexadecimal representation
  * @args: A list containing integer to print its hexadecimal representation
  *
  * Return: The length of the printed hexadecimal number
