@@ -22,10 +22,12 @@ int specify_format(const char *format, va_list args, int index)
 		{'b', print_binary},
 		{'o', print_octal},
 		{'x', print_small_hex},
-		{'X', print_capital_hex}
+		{'X', print_capital_hex},
+		{'u', print_unsigned_int},
+		{'S', print_custom_string}
 	};
 
-	for (i = 0; i < 8; i++)
+	for (i = 0; i < 9; i++)
 	{
 		if (args_printer[i].format == *(format + index))
 		{
