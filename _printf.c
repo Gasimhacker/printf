@@ -20,7 +20,8 @@ int specify_format(const char *format, va_list args, int index)
 		{'i', print_int},
 		{'d', print_int},
 		{'b', print_binary},
-		{'o', print_octal}
+		{'o', print_octal},
+		{'X', print_HEX}
 	};
 
 	for (i = 0; i < 6; i++)

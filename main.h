@@ -77,6 +77,14 @@ char *to_binary(unsigned int n);
 int print_octal(va_list args);
 
 /**
+ * print_hex - Prints the octal representation of an unsigned integer
+ * @args: A list containing the integer to print its octal representation
+ *
+ * Return: The length of the printed octal number
+ */
+int print_HEX(va_list args)
+
+/**
  * convert_to_base - an unsigned integer to binary
  * @number: The number to be converted
  * @base: The base of the number to be converted to
