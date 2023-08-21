@@ -48,6 +48,9 @@ char *convert_to_base(unsigned int number, int base, int capital)
 	buffer = malloc(32 * sizeof(char));
 	index = 0;
 
+	if (buffer == NULL)
+		return (NULL);
+
 	if (number == 0)
 	{
 		buffer[index++] = '0';
@@ -77,6 +80,9 @@ char *convert_to_base(unsigned int number, int base, int capital)
 	}
 
 	result = malloc((index + 1) * sizeof(char));
+
+	if (result == NULL)
+		return (NULL);
 
 	for (i = index - 1, j = 0; i >= 0; i--, j++)
 	{
