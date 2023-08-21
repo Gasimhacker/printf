@@ -1,3 +1,4 @@
+#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -42,7 +43,7 @@ char *convert_to_base(unsigned int number, int base)
 	char *result, *buffer;
 	int index, i, j;
 	unsigned int remainder;
-	
+
 	buffer = malloc(32 * sizeof(char));
 	index = 0;
 
