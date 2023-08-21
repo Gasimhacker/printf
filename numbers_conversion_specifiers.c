@@ -37,7 +37,7 @@ int print_octal(va_list args)
 	unsigned int num = va_arg(args, unsigned int);
 	int len = 0;
 
-	octal_as_string = convert_to_base(num, 8);
+	octal_as_string = convert_to_base(num, 8, 0);
 
 	while (*(octal_as_string + len))
 		len++;
@@ -60,7 +60,30 @@ int print_capital_hex(va_list args)
 	unsigned int num = va_arg(args, unsigned int);
 	int len = 0;
 
-	hex_as_string = convert_to_base(num, 16);
+	hex_as_string = convert_to_base(num, 16, 1);
+
+	while (*(hex_as_string + len))
+		len++;
+
+	write(1, hex_as_string, len);
+
+	return (len);
+
+}
+
+/**
+ * print_small_hex - Prints the small hexadecimal representation of an unsigned integer
+ * @args: A list containing the integer to print its hexadecimal representation
+ *
+ * Return: The length of the printed hexadecimal number
+ */
+int print_small_hex(va_list args)
+{
+	char *hex_as_string;
+	unsigned int num = va_arg(args, unsigned int);
+	int len = 0;
+
+	hex_as_string = convert_to_base(num, 16, 0);
 
 	while (*(hex_as_string + len))
 		len++;

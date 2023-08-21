@@ -85,14 +85,23 @@ int print_octal(va_list args);
 int print_capital_hex(va_list args);
 
 /**
+ * print_small_hex - Prints the small hexadecimal representation of an unsigned integer
+ * @args: A list containing the integer to print its hexadecimal representation
+ *
+ * Return: The length of the printed hexadecimal number
+ */
+int print_small_hex(va_list args);
+
+/**
  * convert_to_base - an unsigned integer to binary
  * @number: The number to be converted
  * @base: The base of the number to be converted to
+ * @capital: Determine the state of the chars 0 = print small , 1 = prints capital
  *
- * Return: A pointer to the binary
+ * Return: A to the binary
  *	   representation (as a string) of the argument passed
  */
-char *convert_to_base(unsigned int number, int base);
+char *convert_to_base(unsigned int number, int base, int capital);
 
 /**
  * _printf - Print any argument passed

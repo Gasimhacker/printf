@@ -9,5 +9,6 @@
 int main(void)
 {
 	_printf("%X\n", 160);
+	_printf("%x\n", 160);
 	return (0);
 }

@@ -34,11 +34,12 @@ char *to_binary(unsigned int n)
  * convert_to_base - an unsigned integer to binary
  * @number: The number to be converted
  * @base: The base of the number to be converted to
+ * @capital: Determine the state of the chars 0 = print small , 1 = prints capital
  *
  * Return: A to the binary
  *	   representation (as a string) of the argument passed
  */
-char *convert_to_base(unsigned int number, int base)
+char *convert_to_base(unsigned int number, int base, int capital)
 {
 	char *result, *buffer;
 	int index, i, j;
@@ -62,7 +63,14 @@ char *convert_to_base(unsigned int number, int base)
 			}
 			else
 			{
-				buffer[index++] = (remainder + 'A' - 10);
+				if (capital)
+				{
+					buffer[index++] = (remainder + 'A' - 10);
+				}
+				else
+				{
+					buffer[index++] = (remainder + 'a' - 10);
+				}
 			}
 			number /= base;
 		}
