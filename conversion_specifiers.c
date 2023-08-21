@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 
+
 /**
  * print_rec_int - Print an integer using recursion
  * @n: The integer to print
@@ -76,12 +77,11 @@ int print_string(va_list args)
 		return (6);
 	}
 
-	while (*str)
-	{
-		_putchar(*str);
-		str++;
+	while (*(str + len))
 		len++;
-	}
+
+	write(1, str, len);
+
 	return (len);
 }
 
@@ -95,9 +95,17 @@ int print_string(va_list args)
  */
 int print_binary(va_list args)
 {
-	unsigned long num = va_arg(args, unsigned long);
+	char *binary_as_string;
+	unsigned int num = va_arg(args, unsigned int);
+	int len = 0;
 
-	num = to_binary(num);
+	binary_as_string = to_binary(num);
 
-	return (print_rec_int(num));
+	while (*(binary_as_string + len))
+		len++;
+
+	write(1, binary_as_string, len);
+
+	return (len);
+
 }

@@ -63,9 +63,10 @@ int print_binary(va_list args);
  * to_binary - Convert an unsigned integer to binary
  * @n: The number to be converted
  *
- * Return: The binary representation of the argument passed
+ * Return: A pointer to the binary
+ *	   representation (as a string) of the argument passed
  */
-int to_binary(int n);
+char *to_binary(unsigned int n);
 
 /**
  * _printf - Print any argument passed
