@@ -34,7 +34,7 @@ char *to_binary(unsigned int n)
  * convert_to_base - an unsigned integer to binary
  * @number: The number to be converted
  * @base: The base of the number to be converted to
- * @capital: Determine the state of the chars 0 = print small , 1 = prints capital
+ * @capital: Determine the state of the chars 0 = small , 1 = capital
  *
  * Return: A to the binary
  *	   representation (as a string) of the argument passed
