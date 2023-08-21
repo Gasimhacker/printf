@@ -11,6 +11,7 @@
 int print_custom_string(va_list args)
 {
 	int n = va_arg(args, int);
+
 	return (n);
 }
 
@@ -42,7 +43,7 @@ int print_rec_unsigned_int(unsigned int n)
  */
 int print_unsigned_int(va_list args)
 {
-	unsigned n = va_arg(args, unsigned int);
+	unsigned int n = va_arg(args, unsigned int);
 
 	return (print_rec_unsigned_int(n));
 
