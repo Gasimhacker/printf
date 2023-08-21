@@ -42,6 +42,7 @@ char *convert_to_base(unsigned int number, int base)
 	char *result, *buffer;
 	int index, i, j;
 	unsigned int remainder;
+	
 	buffer = malloc(32 * sizeof(char));
 	index = 0;
 
@@ -54,7 +55,14 @@ char *convert_to_base(unsigned int number, int base)
 		while (number != 0)
 		{
 			remainder = number % base;
-			buffer[index++] = (remainder < 10) ? (remainder + '0') : (remainder + 'A' - 10);
+			if (remainder < 10)
+			{
+				buffer[index++] = (remainder + '0');
+			}
+			else
+			{
+				buffer[index++] = (remainder + 'A' - 10);
+			}
 			number /= base;
 		}
 	}
