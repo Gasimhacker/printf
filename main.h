@@ -69,6 +69,24 @@ int print_binary(va_list args);
 char *to_binary(unsigned int n);
 
 /**
+ * print_octal - Prints the octal representation of an unsigned integer
+ * @args: A list containing the integer to print its octal representation
+ *
+ * Return: The length of the printed octal number
+ */
+int print_octal(va_list args);
+
+/**
+ * convert_to_base an unsigned integer to binary
+ * @number: The number to be converted
+ * @base: The base of the number to be converted to 
+ *
+ * Return: A to the binary
+ *	   representation (as a string) of the argument passed
+ */
+char *convert_to_base(unsigned int number, int base);
+
+/**
  * _printf - Print any argument passed
  * @format: A list of types of arguments passed to the function:
  *	    %c: char

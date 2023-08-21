@@ -109,3 +109,26 @@ int print_binary(va_list args)
 	return (len);
 
 }
+
+/**
+ * print_octal - Prints the octal representation of an unsigned integer
+ * @args: A list containing the integer to print its octal representation
+ *
+ * Return: The length of the printed octal number
+ */
+int print_octal(va_list args)
+{
+	char *octal_as_string;
+	unsigned int num = va_arg(args, unsigned int);
+	int len = 0;
+
+	octal_as_string = convert_to_base(num,8);
+
+	while (*(octal_as_string + len))
+		len++;
+
+	write(1, octal_as_string, len);
+
+	return (len);
+
+}
