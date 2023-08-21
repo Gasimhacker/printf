@@ -64,27 +64,17 @@ char *convert_to_base(unsigned int number, int base, int capital)
 			else
 			{
 				if (capital)
-				{
 					buffer[index++] = (remainder + 'A' - 10);
-				}
 				else
-				{
 					buffer[index++] = (remainder + 'a' - 10);
-				}
 			}
 			number /= base;
 		}
 	}
-
 	result = malloc((index + 1) * sizeof(char));
-
 	for (i = index - 1, j = 0; i >= 0; i--, j++)
-	{
 		result[j] = buffer[i];
-	}
 	result[j] = '\0';
-
 	free(buffer);
-
 	return (result);
 }
