@@ -4,7 +4,7 @@
  *
  * Return: The binary representation of the argument passed
  */
-unsigned int to_binary(long unsigned int n)
+unsigned int to_binary(unsigned long n)
 {
 	if (n == 1 || n == 0)
 		return (n);

@@ -95,7 +95,7 @@ int print_string(va_list args)
  */
 int print_binary(va_list args)
 {
-	long unsigned int num = va_arg(args, long unsigned int);
+	unsigned long num = va_arg(args, unsigned long);
 
 	num = to_binary(num);
 
