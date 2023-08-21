@@ -10,35 +10,8 @@
  */
 int print_custom_string(va_list args)
 {
-	int len = 0, index = 0;
-	char *str = va_arg(args, char *);
-
-	while (*(str + index))
-	{
-		if ((*(str + index) != '%'))
-		{
-			_putchar(*(str + index));
-		}
-		else if ((*(str + index + 1) == '%'))
-		{
-			index++;
-			_putchar(*(str + index));
-		}
-		else
-		{
-			index++;
-
-			if (check_false_percent(str, index))
-				return (-1);
-
-			len += specify_format(format, args, index);
-			index++;
-			continue;
-		}
-
-		len++;
-		index++;
-	}
+	int n = va_arg(args, int);
+	return (n);
 }
 
 /**
@@ -53,7 +26,7 @@ int print_rec_unsigned_int(unsigned int n)
 
 	if ((num / 10) > 0)
 	{
-		len += print_rec_int(num / 10);
+		len += print_rec_unsigned_int(num / 10);
 	}
 
 	_putchar((num % 10) + '0');
@@ -71,6 +44,6 @@ int print_unsigned_int(va_list args)
 {
 	unsigned n = va_arg(args, unsigned int);
 
-	return (print_rec_int(n));
+	return (print_rec_unsigned_int(n));
 
 }
