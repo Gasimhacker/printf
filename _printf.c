@@ -19,7 +19,7 @@ int specify_format(const char *format, va_list args, int index)
 		{'s', print_string},
 		{'i', print_int},
 		{'d', print_int},
-		{'b', print_binary},
+		{'b', print_binary}
 	};
 
 	for (i = 0; i < 5; i++)
@@ -30,11 +30,15 @@ int specify_format(const char *format, va_list args, int index)
 		}
 	}
 
+	if (*(format) == '\0' || (*(format + index) == ' ' && *(format + index + 1) == '\0'))
+		return (-1);
+
 	_putchar('%');
 	_putchar(*(format + index));
 
 	return (2);
 }
+
 
 /**
  * _printf - Print any argument passed
@@ -55,7 +59,11 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	while (format && *(format + index))
+	if (!format)
+		return (-1);
+
+
+	while (*(format + index))
 	{
 		if ((*(format + index) != '%'))
 		{
@@ -69,6 +77,13 @@ int _printf(const char *format, ...)
 		else
 		{
 			index++;
+
+			if (*(format + index) == ' ' && *(format + index + 1) == '\0')
+				return (-1);
+
+			if (*(format + index) == '\0')
+				return (-1);
+
 			len += specify_format(format, args, index);
 			index++;
 			continue;
