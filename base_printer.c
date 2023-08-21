@@ -23,6 +23,8 @@ int print_base(va_list args, int base, int capital)
 
 	write(1, base_as_string, len);
 
+	free(base_as_string);
+
 	return (len);
 }
 
