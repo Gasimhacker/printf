@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 /**
  * to_binary - Convert an unsigned integer to binary
  * @n: The number to be converted
