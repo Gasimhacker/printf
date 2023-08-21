@@ -82,7 +82,7 @@ int print_octal(va_list args);
  *
  * Return: The length of the printed octal number
  */
-int print_capital_hex(va_list args)
+int print_capital_hex(va_list args);
 
 /**
  * convert_to_base - an unsigned integer to binary
