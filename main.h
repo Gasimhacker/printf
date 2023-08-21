@@ -26,6 +26,25 @@ typedef struct printer
 	int (*print_arg)(va_list);
 } printer_t;
 
+/**
+ * struct base_printer - Define a new struct type that prints
+ *		         the argument passed from the arguments
+ *		         list according to the format character
+ * @format: A character specifing what print function to use
+ * @print_base: A pointer to the function that will be used with format
+ *	        and will have a specific base
+ * @base: The base to use for converting the number
+ * @capital: Determine the state of the chars 0 = print small ,
+ *	     1 = prints capital
+ */
+typedef struct base_printer
+{
+	char format;
+	int (*print_base)(va_list, int base, int capital);
+	int base;
+	int capital;
+} base_printer_t;
+
 
 /**
  * print_int - Prints an integer.
@@ -52,51 +71,23 @@ int print_char(va_list args);
 int print_string(va_list args);
 
 /**
- * print_binary - Prints the binary representation of an unsigned integer
+ * print_base - Prints the bse n representation of an unsigned integer
  * @args: A list containing the integer to print its binary representation
+ * @base: The base of the conversion
+ * @capital: Determine the state of the chars 0 = print small ,
+ *	     1 = prints capital
  *
  * Return: The length of the printed binary number
  */
-int print_binary(va_list args);
+int print_base(va_list args, int base, int capital);
 
-/**
- * to_binary - Convert an unsigned integer to binary
- * @n: The number to be converted
- *
- * Return: A pointer to the binary
- *	   representation (as a string) of the argument passed
- */
-char *to_binary(unsigned int n);
-
-/**
- * print_octal - Prints the octal representation of an unsigned integer
- * @args: A list containing the integer to print its octal representation
- *
- * Return: The length of the printed octal number
- */
-int print_octal(va_list args);
-
-/**
- * print_capital_hex - Prints the capital hexadecimal representation of an unsigned integer
- * @args: A list containing the integer to print its hexadecimal representation
- *
- * Return: The length of the printed hexadecimal number
- */
-int print_capital_hex(va_list args);
-
-/**
- * print_small_hex - Prints the small hexadecimal representation of an unsigned integer
- * @args: A list containing the integer to print its hexadecimal representation
- *
- * Return: The length of the printed hexadecimal number
- */
-int print_small_hex(va_list args);
 
 /**
  * convert_to_base - an unsigned integer to binary
  * @number: The number to be converted
  * @base: The base of the number to be converted to
- * @capital: Determine the state of the chars 0 = print small , 1 = prints capital
+ * @capital: Determine the state of the chars 0 = print small ,
+ *	     1 = prints capital
  *
  * Return: A to the binary
  *	   representation (as a string) of the argument passed
@@ -150,6 +141,5 @@ char *_strcpy(char *dest, char *src);
  * Return: The length of the string
  */
 int _strlen(char *s);
-
 
 #endif

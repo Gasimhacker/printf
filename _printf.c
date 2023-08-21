@@ -19,19 +19,31 @@ int specify_format(const char *format, va_list args, int index)
 		{'s', print_string},
 		{'i', print_int},
 		{'d', print_int},
-		{'b', print_binary},
-		{'o', print_octal},
-		{'x', print_small_hex},
-		{'X', print_capital_hex},
 		{'u', print_unsigned_int},
 		{'S', print_custom_string}
 	};
 
-	for (i = 0; i < 10; i++)
+	base_printer_t base_printer[] = {
+		{'b', print_base, 2, 0},
+		{'o', print_base, 8, 0},
+		{'x', print_base, 16, 0},
+		{'X', print_base, 16, 1},
+	};
+
+	for (i = 0; i < 6; i++)
 	{
 		if (args_printer[i].format == *(format + index))
 		{
 			return (args_printer[i].print_arg(args));
+		}
+	}
+
+	for (i = 0; i < 4; i++)
+	{
+		if (base_printer[i].format == *(format + index))
+		{
+			return (base_printer[i].print_base
+					(args, base_printer[i].base, base_printer[i].capital));
 		}
 	}
 
