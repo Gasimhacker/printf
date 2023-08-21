@@ -5,7 +5,7 @@
  * to_binary - Convert an unsigned integer to binary
  * @n: The number to be converted
  *
- * Return: A to the binary
+ * Return: A pointer to the binary
  *	   representation (as a string) of the argument passed
  */
 char *to_binary(unsigned int n)
