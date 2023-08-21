@@ -27,7 +27,7 @@ int specify_format(const char *format, va_list args, int index)
 		{'S', print_custom_string}
 	};
 
-	for (i = 0; i < 9; i++)
+	for (i = 0; i < 10; i++)
 	{
 		if (args_printer[i].format == *(format + index))
 		{

@@ -93,18 +93,3 @@ int print_small_hex(va_list args)
 	return (len);
 
 }
-
-/**
- * print_unsigned_int - Prints a character
- * @args: A list containing the unsigned int to print
- *
- * Return: Always 1
- */
-int print_unsigned_int(va_list args)
-{
-	unsigned int c = va_arg(args, unsigned int);
-
-	_putchar(c);
-
-	return (1);
-}

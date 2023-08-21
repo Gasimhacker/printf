@@ -104,20 +104,20 @@ int print_small_hex(va_list args);
 char *convert_to_base(unsigned int number, int base, int capital);
 
 /**
- * print_unsigned_int - Prints a character
- * @args: A list containing the unsigned int to print
- *
- * Return: Always 1
- */
-int print_unsigned_int(va_list args);
-
-/**
  * print_custom_string - Prints a string with special charactes
  * @args: A list containing the string to print
  *
  * Return: The length of the printed string
  */
 int print_custom_string(va_list args);
+
+/**
+ * print_unsigned_int - Prints an unsigned integer.
+ * @args: A list containing the unsigned integer to be printed.
+ *
+ * Return: The number of digits printed
+ */
+int print_unsigned_int(va_list args);
 
 /**
  * _printf - Print any argument passed

@@ -59,7 +59,6 @@ int print_char(va_list args)
 	return (1);
 }
 
-
 /**
  * print_string - Prints a string
  * @args: A list containing the string to print
