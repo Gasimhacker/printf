@@ -154,8 +154,7 @@ int handle_prec(va_list args, const char *modifier, char *index)
  *
  * Return: A pointer to a function that will convert the specifier
  */
-unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
-		(unsigned char), int, int, unsigned char)
+converter *handle_specifiers(const char *specifier)
 {
 	int i;
 	converter_t converters[] = {

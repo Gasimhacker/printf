@@ -37,6 +37,13 @@ typedef struct buffer_s
 } buffer_t;
 
 /**
+ * unsigned int converter - A new function type difinition
+ */
+typedef unsigned int converter(va_list, buffer_t *,
+		unsigned char, int, int, unsigned char);
+
+
+/**
  * struct converter_s - A new type defining a converter struct.
  * @specifier: A character representing a conversion specifier.
  * @convert: A pointer to a conversion function corresponding to specifier.
@@ -44,8 +51,7 @@ typedef struct buffer_s
 typedef struct converter_s
 {
 	unsigned char specifier;
-	(unsigned int) (*convert)(va_list, buffer_t *,
-			unsigned char, int, int, unsigned char);
+	converter *convert;
 } converter_t;
 
 /**
@@ -326,8 +332,7 @@ int handle_prec(va_list args, const char *modifier, char *index);
  *
  * Return: A pointer to a function that will handle the conversion
  */
-unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
-		(unsigned char), int, int, unsigned char);
+converter *handle_specifiers(const char *specifier);
 
 /* Modifiers */
 

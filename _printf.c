@@ -27,8 +27,7 @@ int run_printf(const char *format, va_list args, buffer_t *output)
 	char tmp;
 	unsigned char flags, len;
 
-	(unsigned int) (*converter)(va_list, buffer_t *,
-			unsigned char, int, int, unsigned char);
+	converter *converter;
 
 	for (i = 0; *(format + i); i++)
 	{
