@@ -52,7 +52,7 @@ unsigned int convert_dec(va_list args, buffer_t *output,
 	if (ZERO_FLAG == 0 && (PLUS_FLAG == 1 && d >= 0))
 		ret += _memcpy(output, &plus, 1);
 	if (!(d == 0 && prec == 0))
-		ret += convert_sig_base(output, d, "0123456789", flags, 0, prec);
+		ret += convert_sig_base(output, d, "0123456789", flags, wid, prec);
 	return (ret + modify_neg_width(output, ret, flags, wid));
 }
 

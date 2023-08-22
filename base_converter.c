@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * convert_sig_base - Convert a signed long to an inputted base
  *		      and store the result to a buffer inside buffer_t
@@ -28,15 +27,20 @@ unsigned int convert_sig_base(buffer_t *output, long int num, char *base,
 
 	else
 	{
-		for (; prec > 1; prec--, wid--) /* Handle precision */
-			ret += _memcpy(output, &pad, 1);
+
+		wid -= (prec == -1) ? size : prec;
+
 
 		if (NEG_FLAG == 0) /* Handle width */
 		{
 			pad = (ZERO_FLAG == 1) ? '0' : ' ';
-			for (; wid > 1; wid--)
+			for (; wid > 0; wid--)
 				ret += _memcpy(output, &pad, 1);
 		}
+
+		pad = '0';
+		for (; prec > 1; prec--, wid--) /* Handle precision */
+			ret += _memcpy(output, &pad, 1);
 	}
 
 	digit = base[(num < 0 ? -1 : 1) * (num % size)];
