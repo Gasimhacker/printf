@@ -44,7 +44,7 @@ typedef struct buffer_s
 typedef struct converter_s
 {
 	unsigned char specifier;
-	unsigned int (*convert)(va_list, buffer_t *,
+	(unsigned int) (*convert)(va_list, buffer_t *,
 			unsigned char, int, int, unsigned char);
 } converter_t;
 
@@ -322,9 +322,12 @@ int handle_prec(va_list args, const char *modifier, char *index);
 
 /**
  * handle_specifiers - Handle what specifier function to choose
+ * @specifier: A character to tell which specifier to choose
+ *
+ * Return: A pointer to a function that will handle the conversion
  */
 unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
-		unsigned char, int, int, unsigned char);
+		(unsigned char), int, int, unsigned char);
 
 /* Modifiers */
 
