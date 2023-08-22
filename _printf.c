@@ -1,130 +1,88 @@
 #include "main.h"
-#include <stdarg.h>
 
 
 /**
- * specify_format - Specify the right format for printing
- *		    and call the right function to print it
- * @format: A pointer to the string containing the format to specify
- * @index: The offset of the specifier inside the string
- * @args: A list of arguments that needs to be printed
- *
- * Return: The length of the argument that will be printed
+ * cleanup - Peforms cleanup operations for _printf.
+ * @args: A va_list of arguments provided to _printf.
+ * @output: A buffer_t struct.
  */
-int specify_format(const char *format, va_list args, int index)
+void cleanup(va_list args, buffer_t *output)
 {
-	int i;
-	printer_t args_printer[] = {
-		{'c', print_char},
-		{'s', print_string},
-		{'i', print_int},
-		{'d', print_int},
-		{'u', print_unsigned_int},
-		{'S', print_custom_string}
-	};
-
-	base_printer_t base_printer[] = {
-		{'b', print_base, 2, 0},
-		{'o', print_base, 8, 0},
-		{'x', print_base, 16, 0},
-		{'X', print_base, 16, 1},
-	};
-
-	for (i = 0; i < 6; i++)
-	{
-		if (args_printer[i].format == *(format + index))
-		{
-			return (args_printer[i].print_arg(args));
-		}
-	}
-
-	for (i = 0; i < 4; i++)
-	{
-		if (base_printer[i].format == *(format + index))
-		{
-			return (base_printer[i].print_base
-					(args, base_printer[i].base, base_printer[i].capital));
-		}
-	}
-
-	_putchar('%');
-	_putchar(*(format + index));
-
-	return (2);
-}
-
-
-/**
- * check_false_percent - Check if there is "%" or "% "
- *			 at the end of the string
- * @format: The string to check
- * @index: The index after the percentige
- *
- * Return: If there is false % - 1
- *	   otherwise - 0
- */
-int check_false_percent(const char *format, int index)
-{
-	if (*(format + index) == ' ' && *(format + index + 1) == '\0')
-		return (1);
-
-	if (*(format + index) == '\0')
-		return (1);
-
-	return (0);
+	va_end(args);
+	write(1, output->start, output->len);
+	free_buffer(output);
 }
 
 /**
- * _printf - Print any argument passed
- * @format: A list of types of arguments passed to the function:
- *	    %c: char
- *	    %i: integer
- *	    %d: integer
- *	    %f: float
- *	    %s: char *
- *	    any other char should be printed as is
+ * run_printf - Reads through the format string for _printf.
+ * @format: Character string to print - may contain directives.
+ * @output: A buffer_t struct containing a buffer.
+ * @args: A va_list of arguments that will be converted
  *
- * Return: The number of characters printed
+ * Return: The number of characters stored to output.
+ */
+int run_printf(const char *format, va_list args, buffer_t *output)
+{
+	int i, wid, prec, ret = 0;
+	char tmp;
+	unsigned char flags, len;
+
+	unsigned int (*converter)(va_list, buffer_t *,
+			unsigned char, int, int, unsigned char);
+
+	for (i = 0; *(format + i); i++)
+	{
+		len = 0;
+		if (*(format + i) == '%')
+		{
+			tmp = 0;
+			flags = handle_flags(format + i + 1, &tmp);
+			wid = handle_width(args, format + i + tmp + 1, &tmp);
+			prec = handle_prec(args, format + i + tmp + 1,
+					&tmp);
+			len = handle_length(format + i + tmp + 1, &tmp);
+
+			converter = handle_specifiers(format + i + tmp + 1);
+			if (converter != NULL)
+			{
+				i += tmp + 1;
+				ret += converter(args, output, flags, wid, prec, len);
+				continue;
+			}
+			else if (*(format + i + tmp + 1) == '\0')
+			{
+				ret = -1;
+				break;
+			}
+		}
+		ret += _memcpy(output, (format + i), 1);
+		i += (len != 0) ? 1 : 0;
+	}
+	cleanup(args, output);
+	return (ret);
+}
+
+/**
+ * _printf - Outputs a formatted string.
+ * @format: Character string to print - may contain directives.
+ *
+ * Return: The number of characters printed.
  */
 int _printf(const char *format, ...)
 {
-	int len = 0, index = 0;
+	buffer_t *output;
 	va_list args;
+	int ret;
+
+	if (format == NULL)
+		return (-1);
+	output = init_buffer();
+	if (output == NULL)
+		return (-1);
 
 	va_start(args, format);
 
-	if (!format)
-		return (-1);
+	ret = run_printf(format, args, output);
 
-
-	while (*(format + index))
-	{
-		if ((*(format + index) != '%'))
-		{
-			_putchar(*(format + index));
-		}
-		else if ((*(format + index + 1) == '%'))
-		{
-			index++;
-			_putchar(*(format + index));
-		}
-		else
-		{
-			index++;
-
-			if (check_false_percent(format, index))
-				return (-1);
-
-			len += specify_format(format, args, index);
-			index++;
-			continue;
-		}
-
-		len++;
-		index++;
-	}
-
-	va_end(args);
-
-	return (len);
+	return (ret);
 }

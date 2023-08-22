@@ -2,7 +2,8 @@
 
 
 /**
- * _memcpy - Copy n bytes from source to the buffer contained in the buffer_t struct
+ * _memcpy - Copy n bytes from source to the buffer
+ *	     contained in the buffer_t struct
  * @output: A pointer to the buffer_t struct
  * @src: A pointers to the bytes to be copied
  * @n: The number of the copied bytes

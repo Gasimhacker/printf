@@ -1,9 +1,8 @@
 #include "main.h"
 
-
 /**
  * handle_flags - Handle how many flags are passed to the specifier
- * @flags: A pointer to the string containing the flags
+ * @flag: A pointer to the string containing the flags
  * @index: A pointer to the current index
  *
  * Return: A value that will help us to know the flags that are triggerd on
@@ -72,6 +71,7 @@ unsigned char handle_length(const char *modifier, char *index)
  * handle_width - Handle how many minimmum digits we want to print
  * @modifier: A pointer to the string that may contain a width modifier
  * @index: A pointer to the current index
+ * @args: A list containing the arguments list to be converted
  *
  * Return: The value of the width modifier, otherwise - 0
  */
@@ -102,12 +102,13 @@ int handle_width(va_list args, const char *modifier, char *index)
 
 /**
  * handle_prec - Handle how many precision digits are passed to the specifier
- * @flags: A pointer to the string that may contain the digits
+ * @modifier: A pointer to the string that may contain the digits
  * @index: A pointer to the current index
+ * @args: A list containing the arguments list to be printed
  *
  * Return: The value of the precision modifier, otherwise - 0
  */
-int handle_precision(va_list args, const char *modifier, char *index)
+int handle_prec(va_list args, const char *modifier, char *index)
 {
 	int value = 0;
 
@@ -175,10 +176,10 @@ unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
 		{0, NULL}
 	};
 
-	for (i = 0; converters[i].func; i++)
+	for (i = 0; converters[i].convert; i++)
 	{
 		if (converters[i].specifier == *specifier)
-			return (converters[i].func);
+			return (converters[i].convert);
 	}
 
 	return (NULL);

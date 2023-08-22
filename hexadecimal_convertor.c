@@ -1,7 +1,8 @@
 #include "main.h"
 
 /**
- * convert_x - convert an unsigned int to small hexadecimal and store it to the buffer
+ * convert_x - convert an unsigned int to small hexadecimal
+ *	       and store it to the buffer
  * @args: A list of arguments containing the arguments to be converted
  * @output: A pointer to a buffer_t struct containing the output to be printed
  * @flags: A value that will determine how many flags are triggered on
@@ -29,10 +30,10 @@ unsigned int convert_x(va_list args, buffer_t *output,
 		ret += _memcpy(output, lead, 2);
 
 	if (!(num == 0 && prec == 0))
-		ret += convert_ubase(output, num, "0123456789abcdef",
+		ret += convert_usig_base(output, num, "0123456789abcdef",
 				flags, wid, prec);
 
-	ret += print_neg_width(output, ret, flags, wid);
+	ret += modify_neg_width(output, ret, flags, wid);
 
 	return (ret);
 }
@@ -40,7 +41,8 @@ unsigned int convert_x(va_list args, buffer_t *output,
 
 
 /**
- * convert_X - convert an unsigned int to capital hexadecimal and store it to the buffer
+ * convert_X - convert an unsigned int to capital hexadecimal
+ *	       and store it to the buffer
  * @args: A list of arguments containing the arguments to be converted
  * @output: A pointer to a buffer_t struct containing the output to be printed
  * @flags: A value that will determine how many flags are triggered on
@@ -68,10 +70,10 @@ unsigned int convert_X(va_list args, buffer_t *output,
 		ret += _memcpy(output, lead, 2);
 
 	if (!(num == 0 && prec == 0))
-		ret += convert_ubase(output, num, "0123456789ABCDEF",
+		ret += convert_usig_base(output, num, "0123456789ABCDEF",
 				flags, wid, prec);
 
-	ret += print_neg_width(output, ret, flags, wid);
+	ret += modify_neg_width(output, ret, flags, wid);
 
 	return (ret);
 }

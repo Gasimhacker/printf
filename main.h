@@ -39,7 +39,7 @@ typedef struct buffer_s
 /**
  * struct converter_s - A new type defining a converter struct.
  * @specifier: A character representing a conversion specifier.
- * @func: A pointer to a conversion function corresponding to specifier.
+ * @convert: A pointer to a conversion function corresponding to specifier.
  */
 typedef struct converter_s
 {
@@ -140,7 +140,7 @@ unsigned int convert_percent(va_list args, buffer_t *output,
 
 
 /**
- * convert_binary - convert an unsigned int to binary and store it to the buffer
+ * convert_bin - convert an unsigned int to binary and store it to the buffer
  * @args: A list of arguments containing the arguments to be converted
  * @output: A pointer to a buffer_t struct containing the output to be printed
  * @flags: A value that will determine how many flags are triggered on
@@ -185,7 +185,8 @@ unsigned int convert_oct(va_list args, buffer_t *output,
 
 
 /**
- * convert_x - convert an unsigned int to small hexadecimal and store it to the buffer
+ * convert_x - convert an unsigned int to small hexadecimal
+ *	       and store it to the buffer
  * @args: A list of arguments containing the arguments to be converted
  * @output: A pointer to a buffer_t struct containing the output to be printed
  * @flags: A value that will determine how many flags are triggered on
@@ -200,7 +201,8 @@ unsigned int convert_x(va_list args, buffer_t *output,
 
 
 /**
- * convert_X - convert an unsigned int to capital hexadecimal and store it to the buffer
+ * convert_X - convert an unsigned int to capital hexadecimal
+ *	       and store it to the buffer
  * @args: A list of arguments containing the arguments to be converted
  * @output: A pointer to a buffer_t struct containing the output to be printed
  * @flags: A value that will determine how many flags are triggered on
@@ -215,8 +217,8 @@ unsigned int convert_X(va_list args, buffer_t *output,
 
 
 /**
- * convert_S - convert a string with the ascii value of non printable characters
- *	       and store it to the buffer
+ * convert_S - convert a string with the ascii value of non
+ *	       printable characters and store it to the buffer
  * @args: A list of arguments containing the arguments to be converted
  * @output: A pointer to a buffer_t struct containing the output to be printed
  * @flags: A value that will determine how many flags are triggered on
@@ -298,6 +300,7 @@ unsigned char handle_length(const char *modifier, char *index);
 
 /**
  * handle_width - Handle how many minimmum digits we want to print
+ * @args: A list of arguments that will be converted
  * @modifier: A pointer to the string that may contain a width modifier
  * @index: A pointer to the current index
  *
@@ -308,7 +311,8 @@ int handle_width(va_list args, const char *modifier, char *index);
 
 /**
  * handle_prec - Handle how many precision digits are passed to the specifier
- * @flags: A pointer to the string that may contain the digits
+ * @args: A list of arguments that will be converted
+ * @modifier: A pointer to the string that may contain the digits
  * @index: A pointer to the current index
  *
  * Return: The value of the precision modifier, otherwise - 0
@@ -318,9 +322,6 @@ int handle_prec(va_list args, const char *modifier, char *index);
 
 /**
  * handle_specifiers - Handle what specifier function to choose
- * @specifier: A pointer to the string that may contain a specifier
- *
- * Return: A pointer to a function that will convert the specifier
  */
 unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
 		unsigned char, int, int, unsigned char);
@@ -344,9 +345,10 @@ unsigned int modify_width(buffer_t *output, unsigned int printed,
 /**
  * modify_str_width - Store leading spaces inside the buffer
  * @output: The buffer_t struct to store the leading spaces inside it
- * @printed: The number of the printed characters to the buffer
  * @flags: The value of the flags modifier
  * @wid: The minimmum number of digits to be printed
+ * @prec: The precision modifier
+ * @size: The size of the string
  *
  * Return: The number of bytes stored to the buffer
  */
@@ -384,7 +386,8 @@ buffer_t *init_buffer(void);
 void free_buffer(buffer_t *output);
 
 /**
- * _memcpy - Copy n bytes from source to the buffer contained in the buffer_t struct
+ * _memcpy - Copy n bytes from source to the buffer
+ *	     contained in the buffer_t struct
  * @output: A pointer to the buffer_t struct
  * @src: A pointers to the bytes to be copied
  * @n: The number of the copied bytes
@@ -425,8 +428,8 @@ unsigned int convert_sig_base(buffer_t *output, long int num, char *base,
  *
  * Return: The number of the bytes stored to the buffer
  */
-unsigned int convert_usig_base(buffer_t *output, unsigned long int num, char *base,
-		unsigned char flags, int wid, int prec);
+unsigned int convert_usig_base(buffer_t *output, unsigned long int num,
+		char *base, unsigned char flags, int wid, int prec);
 
 #endif /* MAIN_H */
 
