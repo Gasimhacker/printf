@@ -26,7 +26,7 @@ unsigned int convert_dec(va_list args, buffer_t *output,
 		d = (short)d;
 	if (SPACE_FLAG == 1 && d >= 0 && PLUS_FLAG != 1)
 		ret += _memcpy(output, &space, 1);
-	if (prec <= 0 && NEG_FLAG == 0) /* Handle width  */
+	if ((prec <= 0 && NEG_FLAG == 0)) /* Handle width  */
 	{
 		if (d == LONG_MIN)
 			count += 19;
