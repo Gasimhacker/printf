@@ -1,0 +1,49 @@
+.TH man 3 "23 August 2023" "_printf man page"
+. SH NAME
+printf - prints the character(s)
+.SH SYNOPSIS
+#include "main.h"
+int _printf(const char *format, ...);
+
+## :books: DESCRIPTION :books:
+
+printf() functions are inbuilt library functions in C programming language which are available in C library by default. These functions are declared and related macros are defined in stdio.h which is a header file in C language.
+
+.RS 3
+c   prints a character variable
+.br
+s   prints a string variable
+.br
+d   prints an integer and takes an integer value as a signed decimal integer
+.br
+i   prints an integer and takes in a decimal, hexadecimal, or octal type
+.br
+b   prints a binary number
+.br
+u   prints an unsigned integer
+.br
+o   prints an octal number
+.br
+x   prints a hexadecimal number
+.br
+X   prints a hexadecimal number in caps
+.br
+.RE
+
+.SH RETURN
+The function will return the number of characters printed. If unsuccessful the function will return null.
+.SH EXAMPLES
+To print "Today is Tuesday" you would do as follow, where day is a pointer to a string:
+
+ #include "main.h"
+ _printf("Today is %s", day);
+
+To print "It is 1" you would do as follows, where time is a pointer to a integer:
+
+ #include "main.h"
+ _printf("It is %d", time);
+
+### :email: mail :email:
+
+ * [Mohammed Ahmed](ma2286572@gmail.com) 
+ * [Obada Abdalbadee](obadabadee3@hotmail.com)
