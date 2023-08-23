@@ -28,14 +28,12 @@ unsigned int init_handlers(buffer_t *output, int ret, unsigned char flags,
 	}
 	else
 	{
-
-
 		if (((flags >> 5) & 1) == 1) /* Print 0x for ptr address */
 			ret += _memcpy(output, lead, 2);
 
 		if (NEG_FLAG == 0) /* Handle width */
 		{
-			pad = (prec <= -1)? '0' : ' ';
+			pad = (prec <= -1) ? '0' : ' ';
 
 			for (; wid > 0; wid--)
 				ret += _memcpy(output, &pad, 1);
@@ -45,11 +43,7 @@ unsigned int init_handlers(buffer_t *output, int ret, unsigned char flags,
 
 		for (; prec > 1; prec--) /* Handle precision */
 			ret += _memcpy(output, &pad, 1);
-
 	}
-
-
-
 	return (ret);
 }
 
@@ -81,12 +75,8 @@ unsigned int convert_sig_base(buffer_t *output, long int num, char *base,
 
 	else
 	{
-
-
 		wid -= (prec <= -1) ? 1 : prec;
 		ret = init_handlers(output, ret, flags, wid, prec);
-		
-
 	}
 
 	digit = base[(num < 0 ? -1 : 1) * (num % size)];
