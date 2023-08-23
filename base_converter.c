@@ -8,7 +8,7 @@ unsigned int init_handlers(buffer_t *output, int ret, unsigned char flags,
 {
 	char pad, *lead = "0x";
 
-	if (prec > 0)
+	if (prec > 0 || (prec < 0 && (((flags >> 5) & 1) == 1)))
 	{
 		if (NEG_FLAG == 0) /* Handle width */
 		{
@@ -33,7 +33,7 @@ unsigned int init_handlers(buffer_t *output, int ret, unsigned char flags,
 
 		if (NEG_FLAG == 0) /* Handle width */
 		{
-			pad = (prec <= -1) ? '0' : ' ';
+			pad = (ZERO_FLAG == 1) ? '0' : ' ';
 
 			for (; wid > 0; wid--)
 				ret += _memcpy(output, &pad, 1);
