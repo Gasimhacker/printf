@@ -81,10 +81,7 @@ unsigned int convert_usig_base(buffer_t *output, unsigned long int num,
 		{
 			wid -= 2;
 		}
-
-
 		wid -= (prec <= -1) ? 1 : prec;
-
 		if (NEG_FLAG == 0) /* Handle width */
 		{
 			pad = (ZERO_FLAG == 1) ? '0' : ' ';
@@ -99,7 +96,6 @@ unsigned int convert_usig_base(buffer_t *output, unsigned long int num,
 
 		for (; prec > 1; prec--) /* Handle precision */
 			ret += _memcpy(output, &pad, 1);
-
 	}
 
 	digit = base[(num % size)];
