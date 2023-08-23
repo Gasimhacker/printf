@@ -23,7 +23,7 @@ unsigned int convert_char(va_list args, buffer_t *output,
 
 	c = va_arg(args, int);
 
-	ret += modify_width(output, ret, flags, wid);
+	ret += modify_width(output, ret + 1, flags, wid);
 	ret += _memcpy(output, &c, 1);
 	ret += modify_neg_width(output, ret, flags, wid);
 

@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
  * modify_width - Store leading spaces inside the buffer depending
  *		  on the width passed
@@ -18,7 +18,7 @@ unsigned int modify_width(buffer_t *output, unsigned int printed,
 
 	if (NEG_FLAG == 0)
 	{
-		for (wid -= printed; wid > 0;)
+		for (wid -= printed; wid > 0; wid--)
 			ret += _memcpy(output, &width, 1);
 	}
 
