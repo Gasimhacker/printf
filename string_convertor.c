@@ -31,7 +31,7 @@ unsigned int convert_str(va_list args, buffer_t *output,
 	ret += modify_str_width(output, flags, wid, prec, size);
 
 	prec = (prec == -1) ? size : prec;
-	ret += (prec < size) ? 1 : 0;
+	ret += (prec < size && prec != 0) ? 1 : 0;
 	while (*str != '\0' && prec > 0)
 	{
 		ret += _memcpy(output, str, 1);
