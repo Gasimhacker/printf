@@ -1,49 +1,64 @@
-.TH man 3 "23 August 2023" "_printf man page"
+.TH 	man 3 "23 August 2023" "_printf man page"
+
 . SH NAME
-printf - prints the character(s)
+	_printf - prints a formatted string
+
 .SH SYNOPSIS
-#include "main.h"
-int _printf(const char *format, ...);
+	int _printf(const char *format, ...);
 
-## :books: DESCRIPTION :books:
+.SH DESCRIPTION
+printf() functions are inbuilt library functions in C programming language which are available in C library by default. These functions are declared and related macros are defined in stdio.h which is a header file in C language.This function works the same like the builtin function printf execpt there is a 'b' flag.
 
-printf() functions are inbuilt library functions in C programming language which are available in C library by default. These functions are declared and related macros are defined in stdio.h which is a header file in C language.
+.SH OPTIONS
 
-.RS 3
+.RS
+
+.TP
+.br
 c   prints a character variable
+.TP
 .br
 s   prints a string variable
+.TP
 .br
 d   prints an integer and takes an integer value as a signed decimal integer
+.TP
 .br
 i   prints an integer and takes in a decimal, hexadecimal, or octal type
+.TP
 .br
 b   prints a binary number
+.TP
 .br
 u   prints an unsigned integer
+.TP
 .br
 o   prints an octal number
+.TP
 .br
 x   prints a hexadecimal number
+.TP
 .br
 X   prints a hexadecimal number in caps
-.br
+
 .RE
 
 .SH RETURN
 The function will return the number of characters printed. If unsuccessful the function will return null.
 .SH EXAMPLES
-To print "Today is Tuesday" you would do as follow, where day is a pointer to a string:
+To print "Today is Tuesday" you would do as follow:
 
  #include "main.h"
  _printf("Today is %s", day);
+ where day is a pointer to a string containing the string 'Tuesday'
 
-To print "It is 1" you would do as follows, where time is a pointer to a integer:
+To print "It is 1" you would do as follows:
 
  #include "main.h"
  _printf("It is %d", time);
+ where time is an integer with the value of 1
 
-### :email: mail :email:
-
+.SH AUTHOR
+Written by Mohammed Ahmed & Obada Abdalbadee.
  * [Mohammed Ahmed](ma2286572@gmail.com) 
  * [Obada Abdalbadee](obadabadee3@hotmail.com)
